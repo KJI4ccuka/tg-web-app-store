@@ -34,7 +34,7 @@ const Form = () => {
         tg.onEvent('mainButtonClicked', onSendData)
 
         return () => {
-            tg.onEvent('mainButtonClicked', onSendData)
+            tg.offEvent('mainButtonClicked', onSendData)
         }
     }, [onSendData]);
 
