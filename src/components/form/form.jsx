@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import cl from './form.module.scss'
 import {useTelegram} from "../../hooks/useTelegram.js";
 
@@ -7,7 +7,7 @@ const Form = () => {
     const [street, setStreet] = useState()
     const [subject, setSubject] = useState()
 
-    const { tg } = useTelegram()
+    const {tg} = useTelegram()
 
     const onChangeStreet = (e) => {
         setStreet(e.target.value)
@@ -18,6 +18,25 @@ const Form = () => {
     const onChangeSubject = (e) => {
         setSubject(e.target.value)
     }
+
+    const onSendData = useCallback(() => {
+        const data = {
+            country,
+            street,
+            subject
+        }
+
+        tg.sendData(JSON.stringify(data))
+    })
+
+
+    useEffect(() => {
+        tg.onEvent('mainButtonClicked', onSendData)
+
+        return () => {
+            tg.onEvent('mainButtonClicked', onSendData)
+        }
+    }, []);
 
     useEffect(() => {
         tg.MainButton.setParams({
@@ -34,7 +53,6 @@ const Form = () => {
         }
 
     }, [country, street]);
-
 
 
     return (
