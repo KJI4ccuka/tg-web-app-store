@@ -31,7 +31,6 @@ const Form = () => {
             tg.MainButton.hide()
         } else {
             tg.MainButton.show()
-
         }
 
     }, [country, street]);
@@ -40,7 +39,7 @@ const Form = () => {
 
     return (
         <div className={cl.form}>
-            <h3>Введите ваши данные</h3>
+            <h3>Send your info</h3>
             <input
                 className={cl.input}
                 type="text"
