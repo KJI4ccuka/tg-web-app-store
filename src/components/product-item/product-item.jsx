@@ -9,14 +9,14 @@ const ProductItem = ({product, className, onAdd}) => {
     }
 
     return (
-        <div className={'product ' + className}>
+        <div className={cl.product + className}>
             <div className={cl.img}/>
             <div className={cl.title}>{product.title}</div>
             <div className={cl.description}>{product.description}</div>
             <div className={cl.price}>
                 <span>Стоимость: <b>{product.price}</b></span>
             </div>
-            <Button className={'add-btn'} onClick={onAddHandler}>
+            <Button className={cl.add-btn} onClick={onAddHandler}>
                 Добавить в корзину
             </Button>
         </div>
